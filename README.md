@@ -5,7 +5,7 @@ A full-stack job application tracking web app built using **Next.js (App Router)
 ---
 
 ## 🚀 Live Demo
-[https://your-live-demo-link.com](https://mini-job-application-tracker-seven.vercel.app/)
+[https://mini-job-application-tracker-seven.vercel.app/](https://mini-job-application-tracker-seven.vercel.app/)
 
 ## Screenshots
 
@@ -175,6 +175,6 @@ If you want to view, search, or modify database entries through an interactive G
 ```bash
 npx prisma studio
 ```
-This will automatically host a dashboard client locally on **[http://localhost:5555](http://localhost:5172)**.
+This will automatically host a dashboard client locally on **[http://localhost:5172](http://localhost:5172)**.
 
 

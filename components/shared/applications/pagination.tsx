@@ -38,7 +38,7 @@ const Pagination = ({ page, totalPages, urlParamName }: PaginationProps) => {
         Prev
       </Button>
       <span className="text-xs font-bold mt-2">
-        {page}/{totalPages}
+        {Number(page)}/{totalPages}
       </span>
       <Button
         size="lg"

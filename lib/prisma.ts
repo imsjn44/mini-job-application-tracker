@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { PrismaPg } from "@prisma/adapter-pg"; // Example for PostgreSQL
+import { PrismaPg } from "@prisma/adapter-pg";
 import pg from "pg";
 
 const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
@@ -12,7 +12,7 @@ const globalForPrisma = globalThis as unknown as {
 export const prisma =
   globalForPrisma.prisma ??
   new PrismaClient({
-    adapter, // Required in Prisma 7+
+    adapter,
     log: ["query", "error", "warn"],
   });
 

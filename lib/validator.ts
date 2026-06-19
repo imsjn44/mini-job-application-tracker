@@ -10,7 +10,7 @@ export const insertApplicationSchema = z.object({
   job_type: JobTypeSchema,
   status: StatusSchema,
   notes: z.string().refine((val) => val.trim().length > 0, {
-    message: "Notes required",
+    message: "Notes optional",
   }),
 });
 

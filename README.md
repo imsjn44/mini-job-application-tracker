@@ -12,7 +12,7 @@ https://your-live-demo-link.com
 ---
 
 ## 📂 GitHub Repository
-https://github.com/your-username/mini-job-application-tracker
+https://github.com/imsjn44/mini-job-application-tracker
 
 ---
 

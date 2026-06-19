@@ -1,13 +1,21 @@
 # 📌 Mini Job Application Tracker
 
 A full-stack job application tracking web app built using **Next.js (App Router)** with **Server Actions** and **PostgreSQL (Prisma)**.  
-This project was developed as part of the **InternSathi Full Stack Internship assignment**.
 
 ---
 
 ## 🚀 Live Demo
-(Optional but recommended)  
-https://your-live-demo-link.com
+[https://your-live-demo-link.com](https://mini-job-application-tracker-seven.vercel.app/)
+
+## Screenshots
+
+![Application Dashboard]<img width="1522" height="842" alt="Screenshot 2026-06-19 185100" src="https://github.com/user-attachments/assets/fe5a20ea-1375-412d-9c75-1ac79718059c" />
+
+![Create new job application]<img width="1491" height="827" alt="Screenshot 2026-06-19 185132" src="https://github.com/user-attachments/assets/1429b7bd-b137-4fe8-b4f6-b6d40ff26f1c" />
+
+![Update job application]<img width="1593" height="828" alt="Screenshot 2026-06-19 185153" src="https://github.com/user-attachments/assets/82d515ae-66ec-4369-9d6d-87f7645a6ad0" />
+
+![Confirmation on delete]<img width="492" height="185" alt="Screenshot 2026-06-19 185209" src="https://github.com/user-attachments/assets/e234e67e-3f47-4acd-b1ab-c75217665e56" />
 
 ---
 

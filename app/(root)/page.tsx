@@ -9,8 +9,11 @@ type Props = {
 
 const HomePage = async (props: { searchParams: Promise<{ page: string }> }) => {
   const { page } = await props.searchParams;
+
+  const currentPage =
+    isNaN(Number(page)) || Number(page) < 1 ? 1 : Number(page);
   const fetchApplications = await getApplications(
-    Number(page) || 1,
+    currentPage,
     APPLICATIONS_LIMIT,
   );
 
@@ -29,7 +32,10 @@ const HomePage = async (props: { searchParams: Promise<{ page: string }> }) => {
       <ApplicationList title="My Applications" data={fetchApplications.data} />
 
       <div className="flex items-center justify-center">
-        <Pagination totalPages={fetchApplications.totalPages} page={page} />
+        <Pagination
+          totalPages={fetchApplications.totalPages}
+          page={currentPage}
+        />
       </div>
     </div>
   );

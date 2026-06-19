@@ -12,7 +12,8 @@ type PaginationProps = {
 const Pagination = ({ page, totalPages, urlParamName }: PaginationProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-
+  const currentPage =
+    isNaN(Number(page)) || Number(page) < 1 ? 1 : Number(page);
   // Handle Page Change
   const onClick = (btnType: string) => {
     const pageValue = btnType === "next" ? Number(page) + 1 : Number(page) - 1;
@@ -33,12 +34,12 @@ const Pagination = ({ page, totalPages, urlParamName }: PaginationProps) => {
         variant="outline"
         className="w-14 bg-[#A281A7] hover:bg-[#775E7B]"
         onClick={() => onClick("prev")}
-        disabled={Number(page) <= 1}
+        disabled={currentPage <= 1}
       >
         Prev
       </Button>
       <span className="text-xs font-bold mt-2">
-        {Number(page)}/{totalPages}
+        {currentPage}/{totalPages}
       </span>
       <Button
         size="lg"

@@ -1,11 +1,19 @@
 import ApplicationList from "@/components/shared/applications/application-list/application-list";
-// import sampleData from "@/db/sample-data";
 import { getApplications } from "@/lib/actions/application.action";
-import { ApplicationForm } from "@/components/shared/applications/application-form";
-import { DialogDemo } from "@/components/shared/applications/dialog";
+import { APPLICATIONS_LIMIT } from "@/lib/constants/utils";
+import Pagination from "@/components/shared/applications/pagination";
 
-const HomePage = async () => {
-  const fetchApplications = await getApplications();
+type Props = {
+  searchParams: { page?: string };
+};
+
+const HomePage = async (props: { searchParams: Promise<{ page: string }> }) => {
+  const { page } = await props.searchParams;
+  const fetchApplications = await getApplications(
+    Number(page) || 1,
+    APPLICATIONS_LIMIT,
+  );
+
   return (
     <div className="space-y-8">
       <h3
@@ -17,8 +25,14 @@ const HomePage = async () => {
       >
         Application Dashboard
       </h3>
-      <ApplicationList title=" My Applications" data={fetchApplications} />
+
+      <ApplicationList title="My Applications" data={fetchApplications.data} />
+
+      <div className="flex items-center justify-center">
+        <Pagination totalPages={fetchApplications.totalPages} page={page} />
+      </div>
     </div>
   );
 };
+
 export default HomePage;

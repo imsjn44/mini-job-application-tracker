@@ -6,7 +6,9 @@ import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
-
+import type { Application } from "@/types";
+import { updateApplicationSchema } from "@/lib/validator";
+import { defaultValues } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -44,18 +46,32 @@ import {
   updateApplication,
 } from "@/lib/actions/application.action";
 
-export function ApplicationForm() {
+export function ApplicationForm({
+  type,
+  Application,
+  ApplicationId,
+}: {
+  type: string;
+  Application?: Application | null;
+  ApplicationId?: string;
+}) {
   const router = useRouter();
-  const form = useForm({
-    resolver: zodResolver(insertApplicationSchema),
-    defaultValues: {
-      company_name: "",
-      job_title: "",
-      job_type: "FULL_TIME",
-      status: "APPLIED",
-      notes: "",
-    },
+
+  // const currentDefaults = type === "Create" ? defaultValues : editDefaultValues;
+
+  // const form = useForm<z.infer<typeof insertApplicationSchema>>({
+  //   resolver: zodResolver(insertApplicationSchema),
+  //   defaultValues: defaultValues,
+  // });
+
+  const form = useForm<z.infer<typeof insertApplicationSchema>>({
+    resolver:
+      type === "Update"
+        ? zodResolver(updateApplicationSchema)
+        : zodResolver(insertApplicationSchema),
+    defaultValues,
   });
+
   type SubmitHandler<TFieldValues> = (
     data: TFieldValues,
     event?: React.BaseSyntheticEvent,
@@ -65,23 +81,41 @@ export function ApplicationForm() {
   const onSubmit: SubmitHandler<
     z.infer<typeof insertApplicationSchema>
   > = async (values) => {
-    const res = await createApplication(values);
+    if (type === "Create") {
+      const res = await createApplication(values);
 
-    if (res.success) {
-      toast("Application added successfully!");
-      router.push("/");
-    } else {
-      toast.error("Error adding new applications:)");
+      if (!res.success) {
+        toast("Error");
+      } else {
+        toast("Application created successfull");
+        router.push(`/`);
+      }
     }
-    router.push("/");
-  };
+    if (type === "Update") {
+      if (!ApplicationId) {
+        router.push(`/`);
+        return;
+      }
 
+      const res = await updateApplication({ ...values, id: ApplicationId });
+
+      if (!res.success) {
+        toast("Eror");
+      } else {
+        toast("Updated successfully");
+        router.push(`/`);
+      }
+    }
+  };
   return (
     <Card className="w-full sm:max-w-md bg-[#A281A7] text-gray-900 border border-gray-700">
       <CardHeader>
-        <CardTitle className="text-lg">Add job applications</CardTitle>
+        <CardTitle className="text-lg">
+          {type === "Create" ? "Add " : "Edit "}job applications
+        </CardTitle>
         <CardDescription className="text-gray-700">
-          Create new jobs to track.
+          {type === "Create" ? "Create" : "Update "}
+          {type === "Create" ? "new" : "your "} jobs to track.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -223,7 +257,7 @@ export function ApplicationForm() {
             Reset
           </Button>
           <Button type="submit" form="form-rhf-demo" className="cursor-pointer">
-            Create
+            {type === "Create" ? "Create" : "Update"}
           </Button>
         </Field>
       </CardFooter>

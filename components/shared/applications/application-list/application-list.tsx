@@ -4,6 +4,7 @@ import { EyeIcon, PencilIcon, Trash2Icon } from "lucide-react";
 import { formatDate } from "@/lib/constants/formatDate";
 import { Application } from "@/types";
 import { deleteApplication } from "@/lib/actions/application.action";
+import { useState } from "react";
 import { DialogDemo } from "@/components/shared/applications/dialog";
 import {
   AlertDialog,
@@ -16,7 +17,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useState } from "react";
 
 const ApplicationList = ({
   data,
@@ -26,11 +26,19 @@ const ApplicationList = ({
   title?: string;
 }) => {
   const [open, setOpen] = useState(false);
+  const [type, setType] = useState("Create");
+  const [selectedApp, setSelectedApp] = useState<Application | null>(null);
   return (
     <div className="my-10 justify-between">
       {title && <h3 className="h3-bold mb-4 text-gray-600">{title}</h3>}
       <div className="flex justify-end">
-        <DialogDemo open={open} setOpen={setOpen} />
+        <DialogDemo
+          open={open}
+          setOpen={setOpen}
+          type={type}
+          setType={setType}
+          selectedApp={selectedApp}
+        />
       </div>
 
       {data.length > 0 ? (
@@ -61,19 +69,16 @@ const ApplicationList = ({
                   type="button"
                   variant="ghost"
                   className="hover:bg-black hover:text-white cursor-pointer"
-                >
-                  <EyeIcon size={12} />
-                </Button>
-
-                <Button
-                  type="button"
-                  variant="ghost"
-                  className="hover:bg-black hover:text-white cursor-pointer"
+                  onClick={() => {
+                    setType("Update");
+                    setSelectedApp(app);
+                    setOpen(true);
+                  }}
                 >
                   <PencilIcon size={12} />
                 </Button>
                 <AlertDialog>
-                  <AlertDialogTrigger asChild>
+                  <AlertDialogTrigger asChild suppressHydrationWarning>
                     <Button
                       variant="ghost"
                       className="bg-red-500 hover:bg-red-600 text-black hover:text-white cursor-pointer"

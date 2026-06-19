@@ -5,12 +5,21 @@ import { revalidatePath } from "next/cache";
 import z from "zod";
 import { insertApplicationSchema, updateApplicationSchema } from "../validator";
 
-export async function getApplications() {
+export async function getApplications(
+  page: number,
+  APPLICATIONS_LIMIT: number,
+) {
   const data = await prisma.application.findMany({
+    skip: (page - 1) * APPLICATIONS_LIMIT,
     take: APPLICATIONS_LIMIT,
     orderBy: { created_at: "desc" },
   });
-  return convertToPlainObject(data);
+
+  const total = await prisma.application.count();
+  return {
+    data: convertToPlainObject(data),
+    totalPages: Math.ceil(total / APPLICATIONS_LIMIT),
+  };
 }
 
 export async function deleteApplication(id: string) {

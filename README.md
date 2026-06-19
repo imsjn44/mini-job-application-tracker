@@ -25,8 +25,7 @@ This application helps users track their job applications across different hirin
 - View all applications in a dashboard
 - Edit existing applications
 - Delete applications with confirmation
-- Filter applications by status (Applied, Interviewing, Offer, Rejected)
-- Search by company name or job title (optional feature)
+- Pagination (optional feature)
 
 ---
 
@@ -69,7 +68,6 @@ This project uses **Next.js Server Actions** instead of REST APIs.
 - ➕ Add Application Form
 - ✏️ Edit Application
 - ❌ Delete Application with confirmation
-- 🔍 Filter by status
 - ⚡ Server Actions-based full CRUD
 
 
@@ -90,7 +88,7 @@ Ensure you have the following installed on your local machine:
 Pull the repository down to your local machine and switch to the project directory:
 ```bash
 git clone https://github.com
-cd job-application-tracker
+cd mini-job-application-tracker
 ```
 
 ---

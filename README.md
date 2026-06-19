@@ -157,6 +157,6 @@ If you want to view, search, or modify database entries through an interactive G
 ```bash
 npx prisma studio
 ```
-This will automatically host a dashboard client locally on **[http://localhost:5555](http://localhost:5555)**.
+This will automatically host a dashboard client locally on **[http://localhost:5555](http://localhost:5172)**.
 
 

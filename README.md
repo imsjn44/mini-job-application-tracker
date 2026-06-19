@@ -73,71 +73,90 @@ This project uses **Next.js Server Actions** instead of REST APIs.
 - ⚡ Server Actions-based full CRUD
 
 
-###⚙️ Setup Instructions
-1. Clone the Repository
-git clone https://github.com/your-username/job-application-tracker.git
+## 💻 Setup Instructions
+
+Follow this structured guide to configure and run the application locally.
+
+### 📋 Prerequisites
+
+Ensure you have the following installed on your local machine:
+- **Node.js** (v18.x or higher)
+- **npm** (v9.x or higher)
+- **PostgreSQL** instance running locally or hosted on the cloud
+
+---
+
+### 📦 Step 1: Clone & Navigate
+Pull the repository down to your local machine and switch to the project directory:
+```bash
+git clone https://github.com
 cd job-application-tracker
-2. Install Dependencies
+```
+
+---
+
+### 🛠️ Step 2: Install Dependencies
+Install all required package dependencies defined in `package.json`:
+```bash
 npm install
-3. Configure Environment Variables
+```
 
-Create a .env file:
+---
 
-DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE_NAME
+### 🔑 Step 3: Environment Configuration
+1. Create a new environment variable file in the root directory:
+   ```bash
+   touch .env
+   ```
+2. Open the `.env` file and append your PostgreSQL connection string:
+   ```env
+   DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE_NAME?schema=public"
+   ```
+   *💡 Local Example:* `postgresql://postgres:password@localhost:5432/job_tracker`
 
-Example:
+---
 
-DATABASE_URL=postgresql://postgres:password@localhost:5432/job_tracker
-4. Setup Database (Prisma)
+### 🗄️ Step 4: Database & ORM Setup
+Generate the typed Prisma Client and run the schema migrations to map your PostgreSQL database:
 
-Generate Prisma client:
+1. **Generate Prisma Client:**
+   ```bash
+   npx prisma generate
+   ```
+2. **Run Database Migrations:**
+   ```bash
+   npx prisma migrate dev --name init
+   ```
+3. **Seed Initial Mock Data (Optional):**
+   ```bash
+   npx prisma db seed
+   ```
 
-npx prisma generate
+---
 
-Run migrations:
+### 🚀 Step 5: Launch the Application
 
-npx prisma migrate dev
-
-(Optional) Open Prisma Studio:
-
-npx prisma studio
-5. Run Development Server
+#### Development Mode
+To start the live-reloading development server:
+```bash
 npm run dev
+```
+Once compilation completes, view your application at **[http://localhost:3000](http://localhost:3000)**.
 
-Open:
-
-http://localhost:3000
-6. Build for Production (Optional)
+#### Production Mode
+To test a optimized production build locally:
+```bash
 npm run build
-npm start
-7. Seed Database (Optional)
-npx prisma db seed
-📸 Screenshots / Demo
-Dashboard
+npm run start
+```
 
-Add screenshot here
+---
 
-/screenshots/dashboard.png
-Add Application
-
-Add screenshot here
-
-/screenshots/add.png
-Edit Application
-
-Add screenshot here
-
-
-(Optional but recommended)
-https://your-demo-video-link.com
-
-📁 Project Structure
-/app
-  /actions        → Server Actions (CRUD logic)
-  /components     → UI Components
-  /app/(routes)   → Pages (list, add, edit)
-
- /lib             → Prisma client
- /prisma          → Schema & migrations
+### 🔍 Step 6: Useful Database Tools
+If you want to view, search, or modify database entries through an interactive GUI workspace instead of a CLI database manager, open Prisma Studio:
+```bash
+npx prisma studio
+```
+This will automatically host a dashboard client locally on **[http://localhost:5555](http://localhost:5555)**.
 
 

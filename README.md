@@ -1,36 +1,143 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📌 Mini Job Application Tracker
 
-## Getting Started
+A full-stack job application tracking web app built using **Next.js (App Router)** with **Server Actions** and **PostgreSQL (Prisma)**.  
+This project was developed as part of the **InternSathi Full Stack Internship assignment**.
 
-First, run the development server:
+---
 
-```bash
+## 🚀 Live Demo
+(Optional but recommended)  
+https://your-live-demo-link.com
+
+---
+
+## 📂 GitHub Repository
+https://github.com/your-username/job-application-tracker
+
+---
+
+## 📌 Project Overview
+
+This application helps users track their job applications across different hiring stages.
+
+### Users can:
+- Add new job applications
+- View all applications in a dashboard
+- Edit existing applications
+- Delete applications with confirmation
+- Filter applications by status (Applied, Interviewing, Offer, Rejected)
+- Search by company name or job title (optional feature)
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend + Backend
+- Next.js 14+ (App Router)
+- React
+- TypeScript
+- Server Actions
+- Server Components & Client Components
+- Tailwind CSS
+
+### Database
+- PostgreSQL
+
+### ORM
+- Prisma
+
+---
+
+## ⚙️ Architecture
+
+This project uses **Next.js Server Actions** instead of REST APIs.
+
+- Server Actions handle:
+  - Create application
+  - Update application
+  - Delete application
+
+- Server Components handle data fetching
+- Client Components handle UI interactions and forms
+
+---
+
+## 📊 Features
+
+### Core Features
+- 📄 Application List Page
+- ➕ Add Application Form
+- ✏️ Edit Application
+- ❌ Delete Application with confirmation
+- 🔍 Filter by status
+- ⚡ Server Actions-based full CRUD
+
+
+###⚙️ Setup Instructions
+1. Clone the Repository
+git clone https://github.com/your-username/job-application-tracker.git
+cd job-application-tracker
+2. Install Dependencies
+npm install
+3. Configure Environment Variables
+
+Create a .env file:
+
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE_NAME
+
+Example:
+
+DATABASE_URL=postgresql://postgres:password@localhost:5432/job_tracker
+4. Setup Database (Prisma)
+
+Generate Prisma client:
+
+npx prisma generate
+
+Run migrations:
+
+npx prisma migrate dev
+
+(Optional) Open Prisma Studio:
+
+npx prisma studio
+5. Run Development Server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000
+6. Build for Production (Optional)
+npm run build
+npm start
+7. Seed Database (Optional)
+npx prisma db seed
+📸 Screenshots / Demo
+Dashboard
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Add screenshot here
 
-## Learn More
+/screenshots/dashboard.png
+Add Application
 
-To learn more about Next.js, take a look at the following resources:
+Add screenshot here
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+/screenshots/add.png
+Edit Application
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Add screenshot here
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+(Optional but recommended)
+https://your-demo-video-link.com
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+📁 Project Structure
+/app
+  /actions        → Server Actions (CRUD logic)
+  /components     → UI Components
+  /app/(routes)   → Pages (list, add, edit)
+
+ /lib             → Prisma client
+ /prisma          → Schema & migrations
+
+

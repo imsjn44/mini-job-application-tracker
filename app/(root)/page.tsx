@@ -1,7 +1,11 @@
 import ApplicationList from "@/components/shared/applications/application-list/application-list";
-import sampleData from "@/db/sample-data";
+// import sampleData from "@/db/sample-data";
+import { getApplications } from "@/lib/actions/application.action";
+import { ApplicationForm } from "@/components/shared/applications/application-form";
+import { DialogDemo } from "@/components/shared/applications/dialog";
 
-const HomePage = () => {
+const HomePage = async () => {
+  const fetchApplications = await getApplications();
   return (
     <div className="space-y-8">
       <h3
@@ -13,10 +17,7 @@ const HomePage = () => {
       >
         Application Dashboard
       </h3>
-      <ApplicationList
-        title=" My Applications"
-        data={sampleData.applications}
-      />
+      <ApplicationList title=" My Applications" data={fetchApplications} />
     </div>
   );
 };
